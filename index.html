@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartContent - AI-Powered Recommendations</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#" onclick="showPage('home')">
+                <i class="fas fa-brain"></i> SmartContent
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="showPage('home')">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="showPage('explore')">Explore</a>
+                    </li>
+                    <li class="nav-item" id="nav-profile" style="display: none;">
+                        <a class="nav-link" href="#" onclick="showPage('profile')">Profile</a>
+                    </li>
+                    <li class="nav-item" id="nav-admin" style="display: none;">
+                        <a class="nav-link" href="#" onclick="showPage('admin')">Admin</a>
+                    </li>
+                    <li class="nav-item" id="nav-analytics" style="display: none;">
+                        <a class="nav-link" href="#" onclick="showPage('analytics')">Analytics</a>
+                    </li>
+                    <li class="nav-item" id="nav-login">
+                        <a class="nav-link" href="#" onclick="showPage('login')">Login</a>
+                    </li>
+                    <li class="nav-item" id="nav-logout" style="display: none;">
+                        <a class="nav-link" href="#" onclick="logout()">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HOME PAGE -->
+    <div id="page-home" class="page-content">
+        <!-- Hero Section -->
+        <section class="hero-section position-relative overflow-hidden" style="min-height: 600px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+            <!-- Animated Background Shapes -->
+            <div class="position-absolute" style="top: 10%; left: 5%; width: 100px; height: 100px; background: rgba(255,255,255,0.1); border-radius: 50%; animation: float 6s ease-in-out infinite;"></div>
+            <div class="position-absolute" style="top: 60%; right: 10%; width: 150px; height: 150px; background: rgba(255,255,255,0.1); border-radius: 50%; animation: float 8s ease-in-out infinite;"></div>
+            <div class="position-absolute" style="top: 80%; left: 15%; width: 80px; height: 80px; background: rgba(255,255,255,0.1); border-radius: 50%; animation: float 7s ease-in-out infinite;"></div>
+            
+            <div class="container position-relative" style="padding: 100px 0;">
+                <div class="row align-items-center">
+                    <div class="col-lg-7 text-white">
+                        <!-- Animated Title -->
+                        <h1 class="display-3 fw-bold mb-4" style="animation: slideInLeft 1s ease-out;">
+                            Discover Your Next
+                            <span class="d-block" style="background: linear-gradient(45deg, #fff, #ffd89b); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
+                                Favorite Content
+                            </span>
+                        </h1>
+                        <p class="lead mb-4" style="font-size: 1.3rem; opacity: 0.95; animation: slideInLeft 1s ease-out 0.2s both;">
+                            AI-powered recommendations for articles, videos, and products tailored just for you
+                        </p>
+                        
+                        <!-- Features List -->
+                        <div class="mb-4" style="animation: slideInLeft 1s ease-out 0.4s both;">
+                            <div class="d-flex align-items-center mb-2">
+                                <i class="fas fa-check-circle me-2" style="color: #4ade80;"></i>
+                                <span>Personalized AI recommendations</span>
+                            </div>
+                            <div class="d-flex align-items-center mb-2">
+                                <i class="fas fa-check-circle me-2" style="color: #4ade80;"></i>
+                                <span>40+ curated content across multiple categories</span>
+                            </div>
+                            <div class="d-flex align-items-center mb-2">
+                                <i class="fas fa-check-circle me-2" style="color: #4ade80;"></i>
+                                <span>Track your favorites and get smart suggestions</span>
+                            </div>
+                        </div>
+                        
+                        <!-- CTA Buttons -->
+                        <div id="hero-auth" style="animation: slideInLeft 1s ease-out 0.6s both;">
+                            <a href="#" onclick="showPage('login')" class="btn btn-lg px-4 py-3 me-3" style="background: white; color: #667eea; font-weight: 600; border-radius: 50px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); transition: transform 0.3s, box-shadow 0.3s;" onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 15px 40px rgba(0,0,0,0.3)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 10px 30px rgba(0,0,0,0.2)'">
+                                <i class="fas fa-rocket me-2"></i>Get Started Free
+                            </a>
+                            <a href="#" onclick="showPage('explore')" class="btn btn-lg px-4 py-3" style="background: rgba(255,255,255,0.2); color: white; font-weight: 600; border-radius: 50px; border: 2px solid white; backdrop-filter: blur(10px); transition: all 0.3s;" onmouseover="this.style.background='rgba(255,255,255,0.3)'" onmouseout="this.style.background='rgba(255,255,255,0.2)'">
+                                <i class="fas fa-compass me-2"></i>Explore Now
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- Hero Illustration -->
+                    <div class="col-lg-5 mt-5 mt-lg-0" style="animation: slideInRight 1s ease-out 0.3s both;">
+                        <div class="position-relative">
+                            <!-- Content Cards Floating Animation -->
+                            <div class="card shadow-lg" style="background: rgba(255,255,255,0.95); border: none; border-radius: 20px; padding: 20px; animation: float 3s ease-in-out infinite;">
+                                <div class="d-flex align-items-center mb-3">
+                                    <div class="rounded-circle d-flex align-items-center justify-content-center" style="width: 60px; height: 60px; background: linear-gradient(135deg, #667eea, #764ba2);">
+                                        <i class="fas fa-brain fa-2x text-white"></i>
+                                    </div>
+                                    <div class="ms-3">
+                                        <h5 class="mb-0" style="color: #1f2937;">Smart AI Engine</h5>
+                                        <small class="text-muted">Learning your preferences</small>
+                                    </div>
+                                </div>
+                                <div class="progress" style="height: 8px; border-radius: 10px;">
+                                    <div class="progress-bar" style="width: 85%; background: linear-gradient(90deg, #667eea, #764ba2); animation: progressAnimation 2s ease-in-out infinite;"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="card shadow-lg mt-3" style="background: rgba(255,255,255,0.95); border: none; border-radius: 20px; padding: 20px; animation: float 3s ease-in-out 0.5s infinite;">
+                                <div class="row g-2">
+                                    <div class="col-4">
+                                        <div class="text-center">
+                                            <div class="rounded" style="background: #dbeafe; padding: 15px;">
+                                                <i class="fas fa-video fa-2x" style="color: #3b82f6;"></i>
+                                            </div>
+                                            <small class="d-block mt-2" style="color: #6b7280;">Videos</small>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="text-center">
+                                            <div class="rounded" style="background: #fef3c7; padding: 15px;">
+                                                <i class="fas fa-file-alt fa-2x" style="color: #f59e0b;"></i>
+                                            </div>
+                                            <small class="d-block mt-2" style="color: #6b7280;">Articles</small>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="text-center">
+                                            <div class="rounded" style="background: #dcfce7; padding: 15px;">
+                                                <i class="fas fa-box fa-2x" style="color: #22c55e;"></i>
+                                            </div>
+                                            <small class="d-block mt-2" style="color: #6b7280;">Products</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stats Section -->
+        <section class="py-5" style="background: #f9fafb;">
+            <div class="container">
+                <div class="row text-center">
+                    <div class="col-md-3 mb-4">
+                        <div class="counter-box">
+                            <i class="fas fa-file-alt fa-3x mb-3" style="color: #667eea;"></i>
+                            <h2 class="fw-bold mb-0" style="color: #1f2937;">40+</h2>
+                            <p class="text-muted">Quality Content</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3 mb-4">
+                        <div class="counter-box">
+                            <i class="fas fa-users fa-3x mb-3" style="color: #f59e0b;"></i>
+                            <h2 class="fw-bold mb-0" style="color: #1f2937;">1000+</h2>
+                            <p class="text-muted">Happy Users</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3 mb-4">
+                        <div class="counter-box">
+                            <i class="fas fa-star fa-3x mb-3" style="color: #fbbf24;"></i>
+                            <h2 class="fw-bold mb-0" style="color: #1f2937;">4.8</h2>
+                            <p class="text-muted">Average Rating</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3 mb-4">
+                        <div class="counter-box">
+                            <i class="fas fa-brain fa-3x mb-3" style="color: #ef4444;"></i>
+                            <h2 class="fw-bold mb-0" style="color: #1f2937;">AI</h2>
+                            <p class="text-muted">Powered</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Recommendations Section -->
+        <section class="py-5" id="recommendations-section" style="display: none;">
+            <div class="container">
+                <h2 class="text-center mb-4">
+                    <i class="fas fa-magic text-primary"></i> Recommended for You
+                </h2>
+                <div id="loading-spinner" class="text-center">
+                    <div class="spinner-border text-primary" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                </div>
+                <div id="recommendations-grid" class="row g-4"></div>
+            </div>
+        </section>
+
+        <!-- Trending Section -->
+        <section class="py-5 bg-light">
+            <div class="container">
+                <h2 class="text-center mb-4">
+                    <i class="fas fa-fire text-danger"></i> Trending Now
+                </h2>
+                <div id="trending-grid" class="row g-4"></div>
+            </div>
+        </section>
+
+        <!-- Popular Section -->
+        <section class="py-5">
+            <div class="container">
+                <h2 class="text-center mb-4">
+                    <i class="fas fa-star text-warning"></i> Most Popular
+                </h2>
+                <div id="popular-grid" class="row g-4"></div>
+            </div>
+        </section>
+    </div>
+
+    <!-- LOGIN PAGE -->
+    <div id="page-login" class="page-content" style="display: none;">
+        <div class="container">
+            <div class="row justify-content-center mt-5">
+                <div class="col-md-6 col-lg-5">
+                    <div class="card shadow-lg">
+                        <div class="card-body p-5">
+                            <div class="text-center mb-4">
+                                <h2><i class="fas fa-brain text-primary"></i> SmartContent</h2>
+                                <p class="text-muted">Sign in to your account</p>
+                            </div>
+
+                            <ul class="nav nav-tabs mb-4" role="tablist">
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link active" id="login-tab" data-bs-toggle="tab" data-bs-target="#login" type="button">Login</button>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link" id="signup-tab" data-bs-toggle="tab" data-bs-target="#signup" type="button">Sign Up</button>
+                                </li>
+                            </ul>
+
+                            <div class="tab-content">
+                                <!-- Login Form -->
+                                <div class="tab-pane fade show active" id="login" role="tabpanel">
+                                    <form id="login-form">
+                                        <div class="mb-3">
+                                            <label class="form-label">Email</label>
+                                            <input type="email" class="form-control" name="email" required>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label">Password</label>
+                                            <input type="password" class="form-control" name="password" required>
+                                        </div>
+                                        <div class="d-grid">
+                                            <button type="submit" class="btn btn-primary">
+                                                <i class="fas fa-sign-in-alt me-2"></i>Login
+                                            </button>
+                                        </div>
+                                    </form>
+                                </div>
+
+                                <!-- Signup Form -->
+                                <div class="tab-pane fade" id="signup" role="tabpanel">
+                                    <form id="signup-form">
+                                        <div class="mb-3">
+                                            <label class="form-label">Username</label>
+                                            <input type="text" class="form-control" name="username" required minlength="3">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label">Email</label>
+                                            <input type="email" class="form-control" name="email" required>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label">Password</label>
+                                            <input type="password" class="form-control" name="password" required minlength="6">
+                                        </div>
+                                        <div class="d-grid">
+                                            <button type="submit" class="btn btn-success">
+                                                <i class="fas fa-user-plus me-2"></i>Sign Up
+                                            </button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+
+                            <div class="text-center mt-4">
+                                <a href="#" onclick="showPage('home')" class="text-decoration-none">
+                                    <i class="fas fa-arrow-left me-1"></i>Back to Home
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- EXPLORE PAGE -->
+    <div id="page-explore" class="page-content" style="display: none;">
+        <!-- Search & Filter Section -->
+        <section class="py-4 bg-light">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <div class="input-group">
+                            <input type="text" id="search-input" class="form-control" placeholder="Search content...">
+                            <button class="btn btn-primary" onclick="searchContent()">
+                                <i class="fas fa-search"></i> Search
+                            </button>
+                        </div>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <select id="type-filter" class="form-select" onchange="filterContent()">
+                            <option value="">All Types</option>
+                            <option value="article">Articles</option>
+                            <option value="video">Videos</option>
+                            <option value="product">Products</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <select id="category-filter" class="form-select" onchange="filterContent()">
+                            <option value="">All Categories</option>
+                            <option value="Technology">Technology</option>
+                            <option value="Programming">Programming</option>
+                            <option value="Science">Science</option>
+                            <option value="Business">Business</option>
+                            <option value="Entertainment">Entertainment</option>
+                            <option value="Health">Health</option>
+                            <option value="Sports">Sports</option>
+                            <option value="DevOps">DevOps</option>
+                            <option value="Security">Security</option>
+                            <option value="Database">Database</option>
+                            <option value="Electronics">Electronics</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Content Grid -->
+        <section class="py-5">
+            <div class="container">
+                <div id="explore-loading-spinner" class="text-center">
+                    <div class="spinner-border text-primary" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                </div>
+                <div id="content-grid" class="row g-4"></div>
+                
+                <!-- Pagination -->
+                <div class="d-flex justify-content-center mt-4">
+                    <nav>
+                        <ul class="pagination" id="pagination"></ul>
+                    </nav>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- PROFILE PAGE -->
+    <div id="page-profile" class="page-content" style="display: none;">
+        <div class="container py-5">
+            <div class="row">
+                <!-- Profile Sidebar -->
+                <div class="col-md-4 mb-4">
+                    <div class="card shadow">
+                        <div class="card-body text-center">
+                            <div class="mb-3">
+                                <img id="user-avatar" src="https://via.placeholder.com/150" class="rounded-circle" width="150" height="150" alt="Avatar">
+                            </div>
+                            <h4 id="user-username">Username</h4>
+                            <p class="text-muted" id="user-email">email@example.com</p>
+                            <span class="badge bg-primary" id="user-role">User</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Profile Content -->
+                <div class="col-md-8">
+                    <!-- Edit Profile -->
+                    <div class="card shadow mb-4">
+                        <div class="card-header bg-primary text-white">
+                            <h5 class="mb-0"><i class="fas fa-user-edit"></i> Edit Profile</h5>
+                        </div>
+                        <div class="card-body">
+                            <form id="profile-form">
+                                <div class="mb-3">
+                                    <label class="form-label">Name</label>
+                                    <input type="text" class="form-control" name="name" id="profile-name">
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Bio</label>
+                                    <textarea class="form-control" name="bio" id="profile-bio" rows="3"></textarea>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Avatar URL</label>
+                                    <input type="url" class="form-control" name="avatar" id="profile-avatar">
+                                </div>
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fas fa-save"></i> Save Profile
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- Preferences -->
+                    <div class="card shadow">
+                        <div class="card-header bg-success text-white">
+                            <h5 class="mb-0"><i class="fas fa-cog"></i> Preferences</h5>
+                        </div>
+                        <div class="card-body">
+                            <form id="preferences-form">
+                                <div class="mb-3">
+                                    <label class="form-label">Favorite Categories</label>
+                                    <select class="form-select" id="pref-categories" multiple>
+                                        <option value="Technology">Technology</option>
+                                        <option value="Science">Science</option>
+                                        <option value="Business">Business</option>
+                                        <option value="Entertainment">Entertainment</option>
+                                        <option value="Health">Health</option>
+                                        <option value="Sports">Sports</option>
+                                    </select>
+                                    <small class="text-muted">Hold Ctrl/Cmd to select multiple</small>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Interests (Tags)</label>
+                                    <input type="text" class="form-control" id="pref-tags" placeholder="AI, Machine Learning, Web Development">
+                                    <small class="text-muted">Comma-separated tags</small>
+                                </div>
+                                <button type="submit" class="btn btn-success">
+                                    <i class="fas fa-save"></i> Save Preferences
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ADMIN PAGE -->
+    <div id="page-admin" class="page-content" style="display: none;">
+        <div class="container py-5">
+            <h2 class="mb-4"><i class="fas fa-shield-alt text-primary"></i> Admin Panel</h2>
+
+            <!-- Add Content Button -->
+            <div class="mb-4">
+                <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#contentModal" onclick="resetContentForm()">
+                    <i class="fas fa-plus"></i> Add New Content
+                </button>
+            </div>
+
+            <!-- Content Table -->
+            <div class="card shadow">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0"><i class="fas fa-list"></i> Manage Content</h5>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Title</th>
+                                    <th>Type</th>
+                                    <th>Category</th>
+                                    <th>Views</th>
+                                    <th>Likes</th>
+                                    <th>Rating</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="content-table-body">
+                                <tr>
+                                    <td colspan="7" class="text-center">Loading...</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Content Modal -->
+        <div class="modal fade" id="contentModal" tabindex="-1">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalTitle">Add Content</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="content-form">
+                            <input type="hidden" id="content-id">
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">Title *</label>
+                                    <input type="text" class="form-control" id="content-title" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">Type *</label>
+                                    <select class="form-select" id="content-type" required>
+                                        <option value="">Select Type</option>
+                                        <option value="article">Article</option>
+                                        <option value="video">Video</option>
+                                        <option value="product">Product</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Description *</label>
+                                <textarea class="form-control" id="content-description" rows="3" required></textarea>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">Category *</label>
+                                    <select class="form-select" id="content-category" required>
+                                        <option value="">Select Category</option>
+                                        <option value="Technology">Technology</option>
+                                        <option value="Science">Science</option>
+                                        <option value="Business">Business</option>
+                                        <option value="Entertainment">Entertainment</option>
+                                        <option value="Health">Health</option>
+                                        <option value="Sports">Sports</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">Author</label>
+                                    <input type="text" class="form-control" id="content-author">
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Tags (comma-separated)</label>
+                                <input type="text" class="form-control" id="content-tags" placeholder="AI, Technology, Innovation">
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">Image URL</label>
+                                    <input type="url" class="form-control" id="content-image">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">URL</label>
+                                    <input type="url" class="form-control" id="content-url">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">Price</label>
+                                    <input type="number" class="form-control" id="content-price" min="0" step="0.01">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">Duration</label>
+                                    <input type="text" class="form-control" id="content-duration" placeholder="e.g., 5 min read">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn btn-primary" onclick="saveContent()">Save</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ANALYTICS PAGE -->
+    <div id="page-analytics" class="page-content" style="display: none;">
+        <div class="container py-5">
+            <h2 class="mb-4"><i class="fas fa-chart-line text-primary"></i> Analytics Dashboard</h2>
+
+            <!-- Stats Cards -->
+            <div class="row mb-4">
+                <div class="col-md-3 mb-3">
+                    <div class="card bg-primary text-white shadow">
+                        <div class="card-body">
+                            <h6 class="card-title"><i class="fas fa-file-alt"></i> Total Content</h6>
+                            <h2 id="stat-content">0</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <div class="card bg-success text-white shadow">
+                        <div class="card-body">
+                            <h6 class="card-title"><i class="fas fa-users"></i> Total Users</h6>
+                            <h2 id="stat-users">0</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <div class="card bg-info text-white shadow">
+                        <div class="card-body">
+                            <h6 class="card-title"><i class="fas fa-eye"></i> Total Views</h6>
+                            <h2 id="stat-views">0</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <div class="card bg-danger text-white shadow">
+                        <div class="card-body">
+                            <h6 class="card-title"><i class="fas fa-heart"></i> Total Likes</h6>
+                            <h2 id="stat-likes">0</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Most Viewed -->
+            <div class="card shadow mb-4">
+                <div class="card-header bg-info text-white">
+                    <h5 class="mb-0"><i class="fas fa-eye"></i> Most Viewed Content</h5>
+                </div>
+                <div class="card-body">
+                    <div id="most-viewed-list"></div>
+                </div>
+            </div>
+
+            <!-- Most Liked -->
+            <div class="card shadow mb-4">
+                <div class="card-header bg-danger text-white">
+                    <h5 class="mb-0"><i class="fas fa-heart"></i> Most Liked Content</h5>
+                </div>
+                <div class="card-body">
+                    <div id="most-liked-list"></div>
+                </div>
+            </div>
+
+            <!-- Top Rated -->
+            <div class="card shadow mb-4">
+                <div class="card-header bg-warning text-dark">
+                    <h5 class="mb-0"><i class="fas fa-star"></i> Top Rated Content</h5>
+                </div>
+                <div class="card-body">
+                    <div id="top-rated-list"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+        <div id="notification-toast" class="toast" role="alert">
+            <div class="toast-header">
+                <strong class="me-auto">SmartContent</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="toast"></button>
+            </div>
+            <div class="toast-body"></div>
+        </div>
+    </div>
+
+    <!-- Content Detail Modal -->
+    <div class="modal fade" id="contentDetailModal" tabindex="-1">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="contentDetailTitle"></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-5">
+                            <img id="contentDetailImage" src="" alt="" class="img-fluid rounded shadow-sm" style="width: 100%; max-height: 300px; object-fit: cover;">
+                        </div>
+                        <div class="col-md-7">
+                            <div class="mb-3">
+                                <span id="contentDetailType" class="badge bg-primary me-2"></span>
+                                <span id="contentDetailCategory" class="badge bg-secondary"></span>
+                            </div>
+                            <div class="mb-3">
+                                <h6 class="text-muted"><i class="fas fa-user"></i> Author</h6>
+                                <p id="contentDetailAuthor"></p>
+                            </div>
+                            <div class="mb-3">
+                                <h6 class="text-muted"><i class="fas fa-align-left"></i> Description</h6>
+                                <p id="contentDetailDescription"></p>
+                            </div>
+                            <div class="mb-3">
+                                <h6 class="text-muted"><i class="fas fa-tags"></i> Tags</h6>
+                                <div id="contentDetailTags"></div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-6">
+                                    <h6 class="text-muted"><i class="fas fa-eye"></i> Views</h6>
+                                    <p id="contentDetailViews">0</p>
+                                </div>
+                                <div class="col-6">
+                                    <h6 class="text-muted"><i class="fas fa-heart"></i> Likes</h6>
+                                    <p id="contentDetailLikes">0</p>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <h6 class="text-muted"><i class="fas fa-star"></i> Rating</h6>
+                                <p id="contentDetailRating"></p>
+                            </div>
+                            <div id="contentDetailPrice" class="mb-3" style="display: none;">
+                                <h6 class="text-muted"><i class="fas fa-dollar-sign"></i> Price</h6>
+                                <h4 class="text-success" id="contentDetailPriceValue"></h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-outline-danger" id="contentDetailLikeBtn" onclick="likeContentFromModal()">
+                        <i class="fas fa-heart"></i> Like
+                    </button>
+                    <button type="button" class="btn btn-primary" id="contentDetailOpenBtn">
+                        <i class="fas fa-external-link-alt"></i> Open Content
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white text-center py-4 mt-5">
+        <div class="container">
+            <p>&copy; 2025 SmartContent. AI-Powered Content Recommendations.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>
